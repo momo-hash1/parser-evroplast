@@ -52,7 +52,7 @@ def goThroughCategories(categories, page):
         categories = [page]
     for cat in categories:
         goThroughPages(cat)
-        print("Category: " + cat)
+        print("Category downloaded: " + cat)
 
 
 def download_files(link):
