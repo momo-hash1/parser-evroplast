@@ -64,10 +64,14 @@ def download_files(link):
 
     modelsLinks = []
     for modelType in prodInfoParent.find("div", class_="param-tab-models").findAll("a"):
+        if modelType is None:
+            continue
+
         modelsLinks.append(modelType["href"][1:])
 
-    with zipfile.ZipFile("instructions.zip", mode="a") as archive:
-        archive.writestr(title + ".pdf", requests.get(BASE_URL + intructionLink ).content)
+    if intructionLink is not None:
+        with zipfile.ZipFile("instructions.zip", mode="a") as archive:
+            archive.writestr(title + ".pdf", requests.get(BASE_URL + intructionLink ).content)
 
     with zipfile.ZipFile("models.zip", mode="a") as archive:
         archive.mkdir(title)
